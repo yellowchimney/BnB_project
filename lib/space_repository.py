@@ -1,0 +1,3 @@
+class SpaceRespitory:
+
+    pass
