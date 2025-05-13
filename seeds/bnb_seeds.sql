@@ -10,7 +10,7 @@ CREATE TABLE users (
     username VARCHAR(255),
     email VARCHAR(255),
     password VARCHAR(255),
-    phonenumber VARCHAR
+    phone_number VARCHAR
 );
 
 CREATE SEQUENCE IF NOT EXISTS spaces_id_seq;
@@ -23,8 +23,8 @@ CREATE TABLE spaces (
 );
 
 
-INSERT INTO users (username, email, password, phonenumber) VALUES ('Gromit', 'gromit@wallace.com', 'passw0rd1', '07867564876');
-INSERT INTO users (username, email, password, phonenumber) VALUES ('Wallace', 'wallace@wallace.com', 'passw0rd2', '07867564123');
+INSERT INTO users (username, email, password, phone_number) VALUES ('Gromit', 'gromit@wallace.com', 'passw0rd1', '07867564876');
+INSERT INTO users (username, email, password, phone_number) VALUES ('Wallace', 'wallace@wallace.com', 'passw0rd2', '07867564123');
 
 INSERT INTO spaces (name, description, price_per_night, owner_id) VALUES ('Flat', 'Lovely flat', 5, 2);
 INSERT INTO spaces (name, description, price_per_night, owner_id) VALUES ('Kennel', 'The dog house', 1, 1);
