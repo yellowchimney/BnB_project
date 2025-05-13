@@ -4,3 +4,4 @@ __pycache__
 screenshot.png
 makersbnb-venv
 *venv*
+*.DS_Store
