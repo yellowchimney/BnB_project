@@ -3,6 +3,7 @@ from flask import Flask, request, render_template, flash
 from flask_login import LoginManager, login_user
 from lib.database_connection import get_flask_database_connection
 from lib.user import User
+from lib.user_repository import UserRepository
 
 # Create a new Flask app
 app = Flask(__name__)
@@ -26,13 +27,15 @@ def get_index():
 
 @app.route('/sign_in', methods=['GET','POST'])
 def get_login():
+    conn = get_flask_database_connection()
+    repo = UserRepository(conn)
+
     if request.method == "POST":
         username = request.form['username']
         password = request.form['password']
-        user_data = users.get(username) # when user repo is in place, replace this looping through the repo
-        if user_data and user_data['password'] == password:
-            user = User(username, password)
-            login_user(user)
+        active_user = repo.get_user_by_username(username)
+        if active_user.password == password:
+            login_user(active_user)
             return render_template('index.html')
         else:
             flash('Invalid Credentials')
