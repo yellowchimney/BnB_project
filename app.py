@@ -5,7 +5,7 @@ from lib.database_connection import get_flask_database_connection
 from lib.user import User
 
 # Create a new Flask app
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static')
 app.secret_key = os.urandom(24)
 login_manager = LoginManager()
 login_manager.init_app(app)
