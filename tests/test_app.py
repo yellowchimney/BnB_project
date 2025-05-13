@@ -14,3 +14,21 @@ def test_get_index(page, test_web_address):
 
     # We assert that it has the text "This is the homepage."
     expect(p_tag).to_have_text("This is the homepage.")
+
+
+
+
+def test_create_space_route(page, test_web_address):
+
+    page.goto(f"http://{test_web_address}/create_page")
+
+    page.fill("input[name=name]", "Bag End")
+    page.fill("input[name=description]", "Hobbit Hut")
+    page.fill("input[name=price_per_night]", 10)
+
+    page.click("text='Create Space'")
+
+    h1_tags = page.locator("h1")
+    expect(h1_tags).to_have_text("Bag End")
+
+    

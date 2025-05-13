@@ -1,6 +1,6 @@
 import os
 from flask import Flask, request, render_template, flash
-from flask_login import LoginManager, login_user
+from flask_login import LoginManager, login_user, login_required
 from lib.database_connection import get_flask_database_connection
 from lib.user import User
 
@@ -38,12 +38,20 @@ def get_login():
             flash('Invalid Credentials')
     return render_template('sign_in.html')
 
+@app.route('/create_space', methods=['GET'])
+# @login_required
+def create_space():
+    return render_template('create_space.html')
+
+@app.route('/create_space', methods=["POST"])
+# @login_required
+def create_space_post():
+    # FIX FOR TEST -- NEEDS FLASK_LOGIN.CURRENT_USER TO GET REAL ID 
+    owner_id = 1 
+    request.form 
 
 @login_manager.user_loader
 def load_user(user_id):
-    if user_id in users:
-        user_data = users[user_id]
-        return User(user_id, user_data["name"])
     return None
 
 # These lines start the server if you run this file directly
