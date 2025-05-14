@@ -29,3 +29,10 @@ class UserRepository:
             user = User(row['id'], row['username'], row['email'], row['password'], row['phone_number'])
 
             return user
+    
+    def create_user(self, user):
+        rows = self._connection.execute('INSERT INTO users (username, email, password, phone_number) ' \
+         'VALUES (%s,%s,%s,%s) RETURNING id', [user.username, user.email, user.password, user.phone_number])
+        # row = rows[0]
+        # user = User(row['id'], row['username'], row['email'], row['password'], row['phone_number'])
+        return self.get_user_by_id(rows[0]['id'])
