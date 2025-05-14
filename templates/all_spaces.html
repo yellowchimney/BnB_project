@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ShireBnB</title>
+    <link rel="stylesheet" href="/static/style.css" />
+    <style>
+      .logo {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        width: 100px;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 10px;
+        right: 120px;
+        font-size: 16px;
+      }
+
+      .nav-links a {
+        margin-left: 15px;
+        text-decoration: none;
+        color: #333;
+        font-weight: bold;
+      }
+
+      .container {
+        max-width: 860px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      h1 {
+        margin-top: 80px;
+      }
+
+      .grid-container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr); 
+      gap: 30px;
+      margin-top: 40px;
+}
+
+    .space-card {
+      max-width: 360px;
+      border: 1px solid #ccc;
+      border-radius: 12px;
+      padding: 10px;
+      text-align: center;
+      box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+      background-color: #fdfdfd;
+}
+
+    .space-img {
+      width: 80%;
+      height: auto;
+      max-height: 300px;
+      max-width: 300px;
+      object-fit: cover;
+      border-radius: 8px;
+}
+
+    .space-info {
+      margin-top: 10px;
+}
+
+    .space-name {
+      font-weight: bold;
+      font-size: 18px;
+      margin: 5px 0;
+}
+
+    .space-price {
+     color: #666;
+     font-size: 14px;
+}
+    </style>
+  </head>
+  <body>
+    <div class="nav-links">
+      <a href="/sign_in">Login</a>
+    </div>
+    <img src="{{ url_for('static', filename='shirebnb-removebg-preview.png') }}" alt="ShireBnB Logo" class="logo" />
+
+    <h1 style="text-align: center;">ShireBnB</h1>
+
+    <div class="container">
+      <h3 style="text-align: center;">
+        Welcome to ShireBnB — A Cozy Stay for Hobbits on the Move
+      </h3>
+
+      <p>
+       Book your next hobbit vacation here!
+      </p>
+
+    <div class="grid-container">
+      {% for space in spaces %}
+        <div class="space-card">
+          <img src= "{{space.url}}" class="space-img"/>
+            <div class="space-info">
+            <p class="space-name">{{space.name}}</p>
+      
+           <p class="space-price">price {{space.price_per_night}}</p>
+           </div>
+        </div>
+      {% endfor %}
+    </div>
+  </body>
+</html>

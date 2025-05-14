@@ -19,12 +19,34 @@ CREATE TABLE spaces (
     name VARCHAR(255),
     description VARCHAR,
     price_per_night INTEGER,
-    owner_id INTEGER
+    owner_id INTEGER,
+    url VARCHAR
 );
 
 
 INSERT INTO users (username, email, password, phone_number) VALUES ('Gromit', 'gromit@wallace.com', 'passw0rd1', '07867564876');
 INSERT INTO users (username, email, password, phone_number) VALUES ('Wallace', 'wallace@wallace.com', 'passw0rd2', '07867564123');
 
-INSERT INTO spaces (name, description, price_per_night, owner_id) VALUES ('Flat', 'Lovely flat', 5, 2);
-INSERT INTO spaces (name, description, price_per_night, owner_id) VALUES ('Kennel', 'The dog house', 1, 1);
+INSERT INTO spaces (name, description, price_per_night, owner_id, url) VALUES
+('Bag End Bliss', 'A cozy burrow with a round green door, nestled into the side of a grassy hill in the Shire.', 80, 1, 'https://news.airbnb.com/wp-content/uploads/sites/4/2018/08/alt-3-underground-hygge.jpg');
+
+INSERT INTO spaces (name, description, price_per_night, owner_id, url) VALUES
+('Mossy Hollow', 'A quaint hideaway with moss-covered walls and a fireplace that never goes out.', 65, 2, 'https://news.airbnb.com/wp-content/uploads/sites/4/2022/04/Second-Breakfast-Hideaway-1-Kootenay-Boundary-E-BC-1.jpeg');
+
+INSERT INTO spaces (name, description, price_per_night, owner_id, url) VALUES
+('The Toadstool Den', 'This magical nook is surrounded by giant mushrooms and perfect for quiet reading.', 50, 3, 'https://www.bpmcdn.com/f/files/mission/import/2022-04/28932492_web1_220504-PWN-HobbitHouse_1.jpg;w=960;h=640;bgcolor=000000');
+
+INSERT INTO spaces (name, description, price_per_night, owner_id, url) VALUES
+('Underhill Retreat', 'Tucked beneath the hills of Hobbiton, this peaceful retreat offers starlit garden views.', 75, 4, 'https://a0.muscache.com/im/pictures/2b6d8657-8daf-446b-81cf-413688ca0aae.jpg?im_w=720');
+
+INSERT INTO spaces (name, description, price_per_night, owner_id, url) VALUES
+('Willowburrow', 'A sun-dappled home carved beneath an ancient willow tree, ideal for second breakfasts.', 70, 5, 'https://a0.muscache.com/im/pictures/1ce4f90a-c649-47b5-b5c9-9420cffd1c8f.jpg?im_w=720');
+
+INSERT INTO spaces (name, description, price_per_night, owner_id, url) VALUES
+('Oakroot Nook', 'A rustic hobbit-hole beneath an oak tree, with hand-carved furniture and wildflower tea.', 60, 1, 'https://www.rentorshare.net/wp-content/uploads/2019/02/Five-bizarre-Airbnb-places-to-sleep.jpg');
+
+INSERT INTO spaces (name, description, price_per_night, owner_id, url) VALUES
+('Fernwhistle Lodge', 'Secluded and serene, with birdsong in the morning and a pantry full of seed cake.', 68, 2, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoo8gB_uOVOi2XixtaUPw7eYv0TZ-l_9oZ04byH1I71tvxMhbgxgxMYoHiLSQcSEg0xkQ&usqp=CAU');
+
+INSERT INTO spaces (name, description, price_per_night, owner_id, url) VALUES
+('Thistleburrow', 'A bright, cheerful hobbit home with colorful quilts and a perfectly round breakfast table.', 72, 3, 'https://townsquare.media/site/96/files/2023/01/attachment-hobbit-house-airbnb.jpg?w=780&q=75');
