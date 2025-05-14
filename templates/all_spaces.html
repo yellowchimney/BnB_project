@@ -96,6 +96,7 @@
 
     <div class="grid-container">
       {% for space in spaces %}
+      <a href="/space/{{space.id}}"> 
         <div class="space-card">
           <img src= "{{space.url}}" class="space-img"/>
             <div class="space-info">
@@ -104,6 +105,7 @@
            <p class="space-price">price {{space.price_per_night}}</p>
            </div>
         </div>
+      </a>
       {% endfor %}
     </div>
   </body>
