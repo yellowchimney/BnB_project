@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/all_spaces.css">
+    <title>Document</title>
+
     <title>{{space.name}}</title>
+
 </head>
 <body>
     <h1>{{space.name}}</h1>
@@ -15,5 +19,17 @@
 
     <span>£{{space.price_per_night}} per night</span>
 
+    <div>
+    <h3>
+        Book this place
+    </h3>
+    <form>
+    <label for="booking date">Book now!:</label>
+    <input type="date" id="booking" name="booking">
+    <input type="submit" label="Book">
+    </form>
+    </div>
+
+    
 </body>
 </html>
