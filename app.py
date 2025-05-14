@@ -1,10 +1,12 @@
 import os
 from flask import Flask, request, render_template, flash
-from flask_login import LoginManager, login_user
+from flask_login import LoginManager, login_user, login_required
 from lib.database_connection import get_flask_database_connection
 from lib.user import User
 from lib.user_repository import UserRepository
 from lib.space_repository import SpaceRepository
+from lib.space import Space
+
 
 # Create a new Flask app
 app = Flask(__name__, static_folder='static')
@@ -49,6 +51,48 @@ def get_all_spaces():
     repo = SpaceRepository(conn)
     spaces = repo.get_all()
     return render_template('all_spaces.html', spaces=spaces)
+
+@app.route('/create_space', methods=['GET'])
+# @login_required
+def create_space():
+    return render_template('create_space.html')
+
+@app.route('/create_space', methods=["POST"])
+# @login_required
+def create_space_post():
+    conn = get_flask_database_connection(app)
+    repository = SpaceRepository(conn)
+    # FLASK_LOGIN.CURRENT_USER.id, PLACEHOLDER FOR NOW 
+    owner_id = 1
+    name = request.form['name']
+    description = request.form['description']
+    price_per_night = request.form['price_per_night']
+    url = request.form['url']
+
+    space = Space(
+        None,
+        name,
+        description,
+        price_per_night,
+        url,
+        owner_id
+    )
+
+    new_space_id = repository.create_space(space)
+    return get_single_space(new_space_id)
+
+
+@app.route('/space/<id>', methods=['GET'])
+# @login_required
+def get_single_space(id):
+    conn = get_flask_database_connection(app)
+    repository = SpaceRepository(conn)
+
+    space_data = repository.get_single_space(id)
+    return render_template('/single_space.html', space = space_data)
+
+    
+
 
 @login_manager.user_loader
 def load_user(user_id):
