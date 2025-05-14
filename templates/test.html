@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Date Selection</title>
+    <style>
+        /* Simple table styling */
+        table {
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        
+        th {
+            background-color: #f2f2f2;
+        }
+        
+        /* Navigation links */
+        .calendar-nav {
+            margin: 10px 0;
+        }
+        
+        /* Style for blocked dates */
+        .blocked-date {
+            color: #999;
+            text-decoration: line-through;
+            background-color: #f2f2f2;
+        }
+        
+        /* Style for available dates */
+        .available-date {
+            color: blue;
+            text-decoration: underline;
+        }
+        
+        /* Calendar key */
+        .calendar-key {
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <h2>Select a Date</h2>
+    
+    <!-- Month navigation -->
+    <div class="calendar-nav">
+        <strong>{{ calendar.month_name }}</strong>
+    </div>
+    
+    <!-- Server-rendered calendar -->
+    <table>
+        <thead>
+            <tr>
+                <th>Sun</th>
+                <th>Mon</th>
+                <th>Tue</th>
+                <th>Wed</th>
+                <th>Thu</th>
+                <th>Fri</th>
+                <th>Sat</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for week in calendar.calendar_data %}
+                <tr>
+                    {% for day in week %}
+                        <td {% if day.empty %}class="empty"{% elif day.blocked %}class="blocked-date"{% endif %}>
+                            {% if not day.empty %}
+                                {% if day.blocked %}
+                                    {{ day.day }}
+                                {% else %}
+                                    <a href="/select-date/{{ day.date }}" class="available-date">{{ day.day }}</a>
+                                {% endif %}
+                            {% endif %}
+                        </td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    <form>
+    <label for="booking date">Book now!:</label>
+    <input type="date" id="booking" name="booking">
+    <input type="submit" label="Book">
+    </form>
+    
+</body>
+</html>

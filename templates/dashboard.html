@@ -1,26 +1,25 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>ShireBnB</title>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
     <link rel="stylesheet" href="/static/all_spaces.css" />
+</head>
+<body>
+  
+      
 
-  </head>
-  <body>
-    <div class="nav-links">
+
+     <div class="nav-links">
       <a href="/sign_in">Login</a>
     </div>
     <img src="{{ url_for('static', filename='shirebnb-removebg-preview.png') }}" alt="ShireBnB Logo" class="logo" />
 
-    <h1 style="text-align: center;">ShireBnB</h1>
+    <h1 style="text-align: center;">{{user_data.username}}'s Profile</h1>
 
     <div class="container">
-      <h3 style="text-align: center;">
-        Welcome to ShireBnB — A Cozy Stay for Hobbits on the Move
-      </h3>
-
-      <p>
-       Book your next hobbit vacation here!
-      </p>
+    <h3>Your Properties</h3>
 
     <div class="grid-container">
       {% for space in spaces %}
@@ -36,5 +35,15 @@
       </a>
       {% endfor %}
     </div>
-  </body>
+
+
+    <ul><span>Bookings to approve</span>
+        <!-- loop through each booking to create an li of bookings needing to be approved -->
+        <li>
+
+        </li>
+        
+    </ul>
+
+</body>
 </html>
