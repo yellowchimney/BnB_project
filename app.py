@@ -1,5 +1,5 @@
 import os
-from flask import Flask, request, render_template, flash
+from flask import Flask, request, render_template, flash, redirect
 from flask_login import LoginManager, login_user, login_required
 from lib.database_connection import get_flask_database_connection
 from lib.user import User
@@ -38,7 +38,7 @@ def get_login():
             active_user = repo.get_user_by_username(username)
             if active_user.password == password:
                 login_user(active_user)
-                return render_template('index.html')
+                return redirect('/all_spaces')
             else:
                 flash('Invalid Credentials')
         else:
@@ -74,12 +74,12 @@ def create_space_post():
         name,
         description,
         price_per_night,
-        url,
-        owner_id
+        owner_id,
+        url
     )
 
     new_space_id = repository.create_space(space)
-    return get_single_space(new_space_id)
+    return redirect(f'/space/{new_space_id}')
 
 
 @app.route('/space/<id>', methods=['GET'])
