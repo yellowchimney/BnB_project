@@ -2,7 +2,8 @@ DROP TABLE IF EXISTS users;
 DROP SEQUENCE IF EXISTS users_id_seq;
 DROP TABLE IF EXISTS spaces;
 DROP SEQUENCE IF EXISTS spaces_id_seq;
-
+DROP TABLE IF EXISTS bookings;
+DROP SEQUENCE IF EXISTS bookings_id_seq;
 
 CREATE SEQUENCE IF NOT EXISTS users_id_seq;
 CREATE TABLE users (
@@ -23,9 +24,30 @@ CREATE TABLE spaces (
     url VARCHAR
 );
 
+CREATE SEQUENCE IF NOT EXISTS bookings_id_seq;
+CREATE TABLE spaces (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER REFERENCES users(id) ,
+    space_id INTEGER REFERENCES spaces(id),
+    date VARCHAR,
+    is_approved BOOLEAN
+);
+
+
+
 
 INSERT INTO users (username, email, password, phone_number) VALUES ('Gromit', 'gromit@wallace.com', 'passw0rd1', '07867564876');
 INSERT INTO users (username, email, password, phone_number) VALUES ('Wallace', 'wallace@wallace.com', 'passw0rd2', '07867564123');
+INSERT INTO users (id, username, email, password, phone_number)
+VALUES (3, 'Shawn', 'shawn@example.com', 'password_1', '123-456-7890');
+
+INSERT INTO users (id, username, email, password, phone_number)
+VALUES (4, 'Bilbo', 'bilbo@shiremail.com', 'password_2', '111-222-3333');
+
+INSERT INTO users (id, username, email, password, phone_number)
+VALUES (5, 'Sam', 'sam@hobbitmail.com', 'assword_3', '444-555-6666');
+
+
 
 INSERT INTO spaces (name, description, price_per_night, owner_id, url) VALUES
 ('Bag End Bliss', 'A cozy burrow with a round green door, nestled into the side of a grassy hill in the Shire.', 80, 1, 'https://news.airbnb.com/wp-content/uploads/sites/4/2018/08/alt-3-underground-hygge.jpg');
@@ -50,3 +72,21 @@ INSERT INTO spaces (name, description, price_per_night, owner_id, url) VALUES
 
 INSERT INTO spaces (name, description, price_per_night, owner_id, url) VALUES
 ('Thistleburrow', 'A bright, cheerful hobbit home with colorful quilts and a perfectly round breakfast table.', 72, 3, 'https://townsquare.media/site/96/files/2023/01/attachment-hobbit-house-airbnb.jpg?w=780&q=75');
+
+
+
+
+INSERT INTO bookings (user_id, space_id, date, is_approved)
+VALUES (1, 3, '2025-06-01', FALSE);
+
+INSERT INTO bookings (user_id, space_id, date, is_approved)
+VALUES (4, 6, '2025-06-15', FALSE);
+
+INSERT INTO bookings (user_id, space_id, date, is_approved)
+VALUES (2, 1, '2025-07-04', FALSE);
+
+INSERT INTO bookings (user_id, space_id, date, is_approved)
+VALUES (5, 7, '2025-07-21', FALSE);
+
+INSERT INTO bookings (user_id, space_id, date, is_approved)
+VALUES (3, 2, '2025-08-09', TRUE);
