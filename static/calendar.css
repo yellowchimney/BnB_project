@@ -1,0 +1,93 @@
+         body {
+            font-family: 'Georgia', serif;
+            background-color: #f9f7f3;
+        }
+        .logo {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 100px;
+        }
+
+        .nav-links {
+            position: absolute;
+            top: 10px;
+            right: 120px;
+            font-size: 16px;
+        }
+
+        .nav-links a {
+            margin-left: 15px;
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        .space-card {
+            max-width:760px;
+            border: 1px solid #ccc;
+            border-radius: 12px;
+            padding: 10px;
+            text-align: center;
+            box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+            background-color: #fdfdfd;
+        }
+        
+        table {
+            border-collapse: collapse;
+            margin: 20px auto;
+            width: 100%;
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .calendar-nav {
+            margin: 10px 0;
+        }
+
+        .calendar-nav a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #007BFF;
+        }
+
+        .blocked-date {
+            color: #999;
+            text-decoration: line-through;
+            background-color: #f2f2f2;
+        }
+
+        .available-date {
+            color: blue;
+            text-decoration: underline;
+        }
+        button.available-date {
+            background: none;
+            border: none;
+            color: blue;
+            text-decoration: underline;
+            cursor: pointer;
+            padding: 0;
+            font: inherit;
+        }
+        button {
+            cursor: pointer;
+        }
+
+        h1,
+        h2 {
+            font-family: 'Georgia', serif;
+        }

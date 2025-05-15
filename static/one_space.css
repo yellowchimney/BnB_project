@@ -67,3 +67,7 @@ h1 {
     text-decoration: none;
     display: inline-block;
 }
+
+.btn[type="submit"]:hover {
+      background-color: #228B22;
+    }
