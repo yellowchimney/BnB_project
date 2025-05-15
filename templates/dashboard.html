@@ -21,6 +21,7 @@
 
     <div class="container">
     <h3>Your Properties</h3>
+    <a href="/create_space"><button class="btn">Create Spaces</button></a>
 
 
     <div class="grid-container">
@@ -34,22 +35,24 @@
            <p class="space-price">price {{space.price_per_night}}</p>
               {% for booking in space_bookings %}
                 {% if booking['space_id'] == space.id %}
-                <div class ="">
-                  <p>
-                    {{booking['username']}}: {{booking['date']}}
+                <div class ="booking-request">
+                  <p class="booking-date">
+                    {{booking['username']}}<br>
+                    {{booking['date']}}
+                    </p>
                     {% if booking['is_approved'] == False %}
                     <form method="POST" action="/approve_booking/{{booking['booking_id']}}">
-                    <button type="submit">Approve</button>
+                    <button class="btn" type="submit">Approve</button>
                     </form>
                     <form method="POST" action="/decline_booking/{{booking['booking_id']}}">
-                    <button type="submit">Decline</button>
+                    <button class="btn-red" type="submit">Decline</button>
                     </form>
                     {% else %}
                       <form method="POST" action="/decline_booking/{{booking['booking_id']}}">
-                      <button type="submit">Cancel</button>
+                      <button class="btn-red" type="submit">Cancel</button>
                       </form>
                     {%  endif  %}
-                  </p>
+                  
                 </div>
                 {%  endif  %}
               {% endfor %}
@@ -83,7 +86,7 @@
                     Approved
                     {%  endif  %}
                     <form method="POST" action="/decline_booking/{{space['booking_id']}}">
-                    <button type="submit">Cancel</button>
+                    <button class="btn-red" type="submit">Cancel</button>
                     </form>
                   </p>
                 </div>
