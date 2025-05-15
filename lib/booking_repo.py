@@ -6,7 +6,7 @@ class BookingRepository:
         self._connection = connection
     
     def get_bookings_by_user_id(self, user_id):
-        return self._connection.execute('SELECT bookings.id AS booking_id, bookings.user_id AS booker_id, bookings.space_id, bookings.date, bookings.is_approved, spaces.name, spaces.price_per_night, spaces.url FROM bookings JOIN spaces ON bookings.space_id = spaces.id WHERE bookings.id = %s', [user_id])
+        return self._connection.execute('SELECT bookings.id AS booking_id, bookings.user_id AS booker_id, bookings.space_id, bookings.date, bookings.is_approved, spaces.name, spaces.price_per_night, spaces.url FROM bookings JOIN spaces ON bookings.space_id = spaces.id WHERE bookings.user_id = %s', [user_id])
 
 
     def get_bookings_by_space_id(self, space_id):
