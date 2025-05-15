@@ -9,6 +9,7 @@ from lib.space import Space
 from lib.booking_repo import BookingRepository
 from lib.booking import Booking
 from datetime import datetime, timedelta, date
+from flask_bcrypt import Bcrypt
 import calendar
 
 
@@ -16,17 +17,34 @@ app = Flask(__name__, static_folder='static')
 # app.secret_key = os.urandom(24)
 app.secret_key = 'dev-key-123'
 app.permanent_session_lifetime = timedelta(hours=1)
+bcrypt = Bcrypt(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
-login_manager.login_view = "login"
+login_manager.login_view = "sign_in"
 
 
 @app.route('/index', methods=['GET'])
 def get_index():
     return render_template('index.html')
 
+@app.route('/sign_up', methods=['GET', 'POST'])
+def sign_up():
+    conn = get_flask_database_connection(app)
+    repo = UserRepository(conn)
+
+    if request.method == "POST":
+        password = request.form['password']
+        pw_hash = bcrypt.generate_password_hash(password).decode('utf-8')
+
+        new_user = User(None, request.form['username'], request.form['email'], pw_hash, request.form['phone_number'])
+        active_user_id = repo.create_user(new_user)
+        login_user(active_user_id)
+        return redirect('/all_spaces')
+    else:
+        return render_template('/sign_up.html')
+
 @app.route('/sign_in', methods=['GET','POST'])
-def get_login():
+def sign_in():
     conn = get_flask_database_connection(app)
     repo = UserRepository(conn)
     
@@ -34,9 +52,11 @@ def get_login():
     if request.method == "POST":
         username = request.form['username']
         password = request.form['password']
+        hash_password = bcrypt.generate_password_hash(password)
+        bcrypt.check_password_hash(hash_password, password)
         if repo.user_exists(username): 
             active_user = repo.get_user_by_username(username)
-            if active_user.password == password:
+            if bcrypt.check_password_hash(active_user.password, password):
                 login_user(active_user)
                 session.permanent = True
                 return redirect('/all_spaces')
