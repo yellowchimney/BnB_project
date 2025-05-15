@@ -1,4 +1,8 @@
- .logo {
+body{
+       background-color: #f9f7f3;
+}
+
+.logo {
         position: absolute;
         top: 10px;
         left: 10px;
@@ -78,4 +82,38 @@ h1 {
     border-radius: 4px;
     text-decoration: none;
     display: inline-block;
+}
+
+.btn:hover {
+      background-color: #228B22;
+    }
+
+.btn-red {
+    padding: 0.5rem 1rem;
+    background-color: #cd0b0b;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    display: inline-block; 
+}
+
+
+.btn-red:hover {
+      background-color:#ef0f0f;
+}
+
+
+.booking-request {
+      display:flex;
+      width:100%;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+      
+      
+}
+
+.booking-date{
+      width:100%;
+      flex-direction: column;
 }
