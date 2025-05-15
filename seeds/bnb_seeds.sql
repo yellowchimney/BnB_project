@@ -1,8 +1,8 @@
-DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS users CASCADE;
 DROP SEQUENCE IF EXISTS users_id_seq;
-DROP TABLE IF EXISTS spaces;
+DROP TABLE IF EXISTS spaces CASCADE;
 DROP SEQUENCE IF EXISTS spaces_id_seq;
-DROP TABLE IF EXISTS bookings;
+DROP TABLE IF EXISTS bookings CASCADE;
 DROP SEQUENCE IF EXISTS bookings_id_seq;
 
 CREATE SEQUENCE IF NOT EXISTS users_id_seq;
@@ -38,14 +38,14 @@ CREATE TABLE bookings (
 
 INSERT INTO users (username, email, password, phone_number) VALUES ('Gromit', 'gromit@wallace.com', 'passw0rd1', '07867564876');
 INSERT INTO users (username, email, password, phone_number) VALUES ('Wallace', 'wallace@wallace.com', 'passw0rd2', '07867564123');
-INSERT INTO users (id, username, email, password, phone_number)
-VALUES (3, 'Shawn', 'shawn@example.com', 'password_1', '123-456-7890');
+INSERT INTO users (username, email, password, phone_number)
+VALUES ('Shawn', 'shawn@example.com', 'password_1', '123-456-7890');
 
-INSERT INTO users (id, username, email, password, phone_number)
-VALUES (4, 'Bilbo', 'bilbo@shiremail.com', 'password_2', '111-222-3333');
+INSERT INTO users (username, email, password, phone_number)
+VALUES ('Bilbo', 'bilbo@shiremail.com', 'password_2', '111-222-3333');
 
-INSERT INTO users (id, username, email, password, phone_number)
-VALUES (5, 'Sam', 'sam@hobbitmail.com', 'assword_3', '444-555-6666');
+INSERT INTO users (username, email, password, phone_number)
+VALUES ('Sam', 'sam@hobbitmail.com', 'password_3', '444-555-6666');
 
 
 
