@@ -45,7 +45,8 @@ INSERT INTO users (username, email, password, phone_number)
 VALUES ('Bilbo', 'bilbo@shiremail.com', 'password_2', '111-222-3333');
 
 INSERT INTO users (username, email, password, phone_number)
-VALUES ('Sam', 'sam@hobbitmail.com', 'password_3', '444-555-6666');
+VALUES ('Sam', 'sam@hobbitmail.com', 'assword_3', '444-555-6666');
+
 
 
 
