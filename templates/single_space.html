@@ -3,17 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>{{space.name}}</title>
+     <link rel="stylesheet" href="/static/one_space.css" />
 </head>
+
 <body>
-    <h1>{{space.name}}</h1>
+    <div class="nav-links">
+      <a href="/sign_in">Logout</a>
+      <a href="/sign_up">Sign up</a>
+    </div>
+    <img src="{{ url_for('static', filename='shirebnb-removebg-preview.png') }}" alt="ShireBnB Logo" class="logo" />
 
-        
-    <img src="{{space.url}}">
+    <h1 style="text-align: center;">{{space.name}}</h1>
+<div class="container">
+    <div class="space-card">
+      <img src="{{space.url}}" width="600" height="400">
+       <div class="space-info">
+         <p>{{space.description}}</p>
 
-    <p>{{space.description}}</p>
-
-    <span>£{{space.price_per_night}} per night</span>
-
+    <p>£{{space.price_per_night}} per night</p>
+       </div>
+    
+      <div>
+      <a href="/bookspace/{{ space.id }}" class="btn">Book now</a>
+      </div>
+    </div>
+</div> 
 </body>
 </html>

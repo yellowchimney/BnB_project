@@ -25,7 +25,7 @@ CREATE TABLE spaces (
 );
 
 CREATE SEQUENCE IF NOT EXISTS bookings_id_seq;
-CREATE TABLE spaces (
+CREATE TABLE bookings (
     id SERIAL PRIMARY KEY,
     user_id INTEGER REFERENCES users(id) ,
     space_id INTEGER REFERENCES spaces(id),

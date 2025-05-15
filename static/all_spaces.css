@@ -1,0 +1,81 @@
+ .logo {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        width: 100px;
+ }
+
+ .nav-links {
+        position: absolute;
+        top: 10px;
+        right: 120px;
+        font-size: 16px;
+}
+
+.nav-links a {
+        margin-left: 15px;
+        text-decoration: none;
+        color: #333;
+        font-weight: bold;
+}
+
+ .container {
+        max-width: 860px;
+        margin: 0 auto;
+        padding: 20px;
+}
+
+h1 {
+        margin-top: 80px;
+}
+
+.grid-container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr); 
+      gap: 30px;
+      margin-top: 40px;
+}
+
+.space-card {
+      max-width: 360px;
+      border: 1px solid #ccc;
+      border-radius: 12px;
+      padding: 10px;
+      text-align: center;
+      box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+      background-color: #fdfdfd;
+}
+
+.space-img {
+      width: 80%;
+      height: auto;
+      max-height: 300px;
+      max-width: 300px;
+      object-fit: cover;
+      border-radius: 8px;
+}
+
+.space-info {
+      margin-top: 10px;
+}
+
+.space-name {
+      font-weight: bold;
+      font-size: 18px;
+      margin: 5px 0;
+}
+
+.space-price {
+     color: #666;
+     font-size: 14px;
+}
+
+.btn {
+    padding: 0.5rem 1rem;
+    background-color: #006400;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    display: inline-block;
+}

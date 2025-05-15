@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Date Selection</title>
+    <style>
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+
+        table {
+            border-collapse: collapse;
+            margin: 20px auto;
+            width: 100%;
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .calendar-nav {
+            margin: 10px 0;
+        }
+
+        .calendar-nav a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #007BFF;
+        }
+
+        .blocked-date {
+            color: #999;
+            text-decoration: line-through;
+            background-color: #f2f2f2;
+        }
+
+        .available-date {
+            color: blue;
+            text-decoration: underline;
+        }
+        button.available-date {
+            background: none;
+            border: none;
+            color: blue;
+            text-decoration: underline;
+            cursor: pointer;
+            padding: 0;
+            font: inherit;
+}
+        button {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Pick a date for your booking</h1>
+        <h2>{{ calendar.month_name }} {{ calendar.year }}</h2>
+
+        <div class="calendar-nav">
+            <a href="{{ url_for('booking', space_id=space_id, year=year, month=month - 1) }}">« Previous</a>
+            <a href="{{ url_for('booking', space_id=space_id, year=year, month=month + 1) }}">Next »</a>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th><th>Sun</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for week in calendar.calendar_data %}
+                <tr>
+                    {% for day in week %}
+                        {% if day.empty %}
+                            <td></td>
+                        {% elif day.blocked %}
+                            <td class="blocked-date">{{ day.day }}</td>
+                        {% else %}
+                            <td>
+                                <button type="button" class="available-date" onclick="selectDate('{{ day.date }}')">
+                                    {{ day.day }}
+                                </button>
+                            </td>
+                        {% endif %}
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <form method="POST" action="">
+            <label for="date">Selected date:</label>
+            <input type="text" id="date" name="date" readonly required>
+            <button type="submit">Book</button>
+        </form>
+
+        <div class="calendar-key">
+            <strong>Key:</strong><br>
+            <span class="available-date">Blue underlined</span>: Available<br>
+            <span class="blocked-date">Grey crossed</span>: Unavailable
+        </div>
+    </div>
+
+    <script>
+        function selectDate(date) {
+            document.getElementById("date").value = date;
+        }
+    </script>
+</body>
+</html>
