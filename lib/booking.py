@@ -2,7 +2,7 @@
 
 class Booking():
 
-    def __init__(self, id, user_id, space_id, date):
+    def __init__(self, id, user_id, space_id, date, is_approved=False):
         self.id = id
         self.user_id = user_id
         self.space_id = space_id

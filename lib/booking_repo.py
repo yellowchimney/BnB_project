@@ -1,6 +1,6 @@
 from lib.booking import Booking
 
-class UserRepository:
+class BookingRepository:
     
     def __init__(self, connection):
         self._connection = connection
@@ -30,3 +30,9 @@ class UserRepository:
          'VALUES (%s,%s,%s,%s) RETURNING id', [booking.user_id, booking.space_id, booking.date, booking.is_approved])
 
         return self.get_booking_by_id(rows[0]['id'])
+    
+    def get_booked_dates_for_space(self, space_id):
+        rows = self._connection.execute("SELECT date FROM bookings WHERE space_id = %s AND is_approved = TRUE",
+                (space_id,)
+        )
+        return [row['date'] for row in rows] 

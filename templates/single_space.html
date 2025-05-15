@@ -3,33 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/all_spaces.css">
-    <title>Document</title>
 
     <title>{{space.name}}</title>
-
+     <link rel="stylesheet" href="/static/one_space.css" />
 </head>
+
 <body>
-    <h1>{{space.name}}</h1>
-
-        
-    <img src="{{space.url}}">
-
-    <p>{{space.description}}</p>
-
-    <span>£{{space.price_per_night}} per night</span>
-
-    <div>
-    <h3>
-        Book this place
-    </h3>
-    <form>
-    <label for="booking date">Book now!:</label>
-    <input type="date" id="booking" name="booking">
-    <input type="submit" label="Book">
-    </form>
+    <div class="nav-links">
+      <a href="/sign_in">Logout</a>
+      <a href="/sign_up">Sign up</a>
     </div>
+    <img src="{{ url_for('static', filename='shirebnb-removebg-preview.png') }}" alt="ShireBnB Logo" class="logo" />
 
+    <h1 style="text-align: center;">{{space.name}}</h1>
+<div class="container">
+    <div class="space-card">
+      <img src="{{space.url}}" width="600" height="400">
+       <div class="space-info">
+         <p>{{space.description}}</p>
+
+    <p>£{{space.price_per_night}} per night</p>
+       </div>
     
+      <div>
+      <a href="/bookspace/{{ space.id }}" class="btn">Book now</a>
+      </div>
+    </div>
+</div> 
 </body>
 </html>
