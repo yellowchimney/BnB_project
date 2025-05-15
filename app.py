@@ -14,8 +14,8 @@ import calendar
 
 
 app = Flask(__name__, static_folder='static')
-# app.secret_key = os.urandom(24)
-app.secret_key = 'dev-key-123'
+app.secret_key = os.urandom(24)
+# app.secret_key = 'dev-key-123'
 app.permanent_session_lifetime = timedelta(hours=1)
 bcrypt = Bcrypt(app)
 login_manager = LoginManager()
@@ -23,7 +23,7 @@ login_manager.init_app(app)
 login_manager.login_view = "sign_in"
 
 
-@app.route('/index', methods=['GET'])
+@app.route('/', methods=['GET'])
 def get_index():
     return render_template('index.html')
 
