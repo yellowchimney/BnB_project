@@ -83,8 +83,7 @@ def create_space():
 def create_space_post():
     conn = get_flask_database_connection(app)
     repository = SpaceRepository(conn)
-    # FLASK_LOGIN.CURRENT_USER.id, PLACEHOLDER FOR NOW 
-    owner_id = 1
+    owner_id = current_user.id
     name = request.form['name']
     description = request.form['description']
     price_per_night = request.form['price_per_night']
