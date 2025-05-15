@@ -77,18 +77,19 @@
             <p class="space-name">{{space['name']}}</p>
         
            <p class="space-price">price {{space['price_per_night']}}</p>
-                <div class ="">
-                  <p>
+                <div class ="booking-request">
+                  <p class="booking-date">
                     1 Night {{space['date']}}:
+                  <br>
                     {% if space['is_approved'] == False %}
                     Awaiting Approval
                     {% else %}
                     Approved
                     {%  endif  %}
+                  </p>
                     <form method="POST" action="/decline_booking/{{space['booking_id']}}">
                     <button class="btn-red" type="submit">Cancel</button>
                     </form>
-                  </p>
                 </div>
            </div>
         </div>
