@@ -210,7 +210,7 @@ def booking(space_id):
     generated_calendar = get_month_calendar(year, month, blocked_date_objects)
     
     if request.method == "GET":
-        return render_template('test.html', 
+        return render_template('calendar.html', 
                         blocked_dates=blocked_date_objects,
                         calendar=generated_calendar,    
                         space_id=space_id,
@@ -228,7 +228,7 @@ def booking(space_id):
 @login_required
 def logout():
     logout_user() 
-    return redirect(url_for('login'))
+    return redirect(url_for('sign_in'))
 
 
 

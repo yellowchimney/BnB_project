@@ -38,8 +38,17 @@
   </head>
   <body>
     <div class="nav-links">
+      {% if not current_user.id %}
+
       <a href="/sign_in">Login</a>
       <a href="/sign_up">Sign up</a>
+
+      {% else %}
+
+      <a href="/logout">Logout</a>
+      <a href="/dashboard/{{current_user.id}}">Dashboard</a>
+      {% endif %}
+      
     </div>
     <img src="{{ url_for('static', filename='shirebnb-removebg-preview.png') }}" alt="ShireBnB Logo" class="logo" />
 

@@ -36,8 +36,8 @@ CREATE TABLE bookings (
 
 
 
-INSERT INTO users (username, email, password, phone_number) VALUES ('Gromit', 'gromit@wallace.com', 'passw0rd1', '07867564876');
-INSERT INTO users (username, email, password, phone_number) VALUES ('Wallace', 'wallace@wallace.com', 'passw0rd2', '07867564123');
+INSERT INTO users (username, email, password, phone_number) VALUES ('Gromit', 'gromit@wallace.com', '$2b$12$odSf0B0I5gSqVFfddp92oeZudmdDj2gkNmlXT4do1S2roiT45N5tu', '07867564876');
+INSERT INTO users (username, email, password, phone_number) VALUES ('Wallace', 'wallace@wallace.com', '$2b$12$ol40SdrozS89ixcXk8mFHOSHTiTpo9raSD7u4fX86CR5mg1W7u18G', '07867564123');
 INSERT INTO users (username, email, password, phone_number)
 VALUES ('Shawn', 'shawn@example.com', 'password_1', '123-456-7890');
 

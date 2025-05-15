@@ -4,23 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <link rel="stylesheet" href="/static/form.css" />
 </head>
 <body>
     <div class="nav-links">
     <a href="/sign_up">Sign up</a>
+    <a href="javascript:history.back()">Go Back</a>
     </div>
-    <div class="login_form"> 
+    <img src="{{ url_for('static', filename='shirebnb-removebg-preview.png') }}" alt="ShireBnB Logo" class="logo" />
+    <div class="sign-in-container"> 
         <h1>Sign In</h1>
         <form action="/sign_in", method="POST">
         <p>
-        <input type="username" name="username" id="username"placeholder="Username"required>
+        <input class="form_field" type="text" name="username" id="username"placeholder="Username"required>
         </p>
         <p>
-        <input type="password" name="password" id="password"placeholder="Password"required>
+        <input class="form_field" type="text" name="password" id="password"placeholder="Password"required>
         </p>
-        <p>
+        <div class="button-container">
         <button type="submit" id="submit" value="submit">Login</button>
-        </p>
+        </div>
         </form>
 
 {% with messages = get_flashed_messages() %}
