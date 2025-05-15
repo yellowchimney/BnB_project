@@ -14,8 +14,8 @@ import calendar
 
 
 app = Flask(__name__, static_folder='static')
-# app.secret_key = os.urandom(24)
-app.secret_key = 'dev-key-123'
+app.secret_key = os.urandom(24)
+# app.secret_key = 'dev-key-123'
 app.permanent_session_lifetime = timedelta(hours=1)
 bcrypt = Bcrypt(app)
 login_manager = LoginManager()
@@ -23,7 +23,7 @@ login_manager.init_app(app)
 login_manager.login_view = "sign_in"
 
 
-@app.route('/index', methods=['GET'])
+@app.route('/', methods=['GET'])
 def get_index():
     return render_template('index.html')
 
@@ -74,12 +74,12 @@ def get_all_spaces():
     return render_template('all_spaces.html', spaces=spaces)
 
 @app.route('/create_space', methods=['GET'])
-# @login_required
+@login_required
 def create_space():
     return render_template('create_space.html')
 
 @app.route('/create_space', methods=["POST"])
-# @login_required
+@login_required
 def create_space_post():
     conn = get_flask_database_connection(app)
     repository = SpaceRepository(conn)
@@ -104,7 +104,7 @@ def create_space_post():
 
 
 @app.route('/space/<id>', methods=['GET'])
-# @login_required
+@login_required
 def get_single_space(id):
     conn = get_flask_database_connection(app)
     repository = SpaceRepository(conn)
@@ -113,7 +113,7 @@ def get_single_space(id):
     return render_template('/single_space.html', space = space_data)
 
 @app.route('/dashboard/<id>', methods=['GET'])
-# @login_required
+@login_required
 def get_user_profile(id):
     conn = get_flask_database_connection(app)
     repository = UserRepository(conn)
