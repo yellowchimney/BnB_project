@@ -21,20 +21,6 @@
     <div class="container">
     <h3>Your Properties</h3>
 
-    <!-- <div class="grid-container">
-      {% for space in spaces %}
-      <a href="/space/{{space.id}}"> 
-        <div class="space-card">
-          <img src= "{{space.url}}" class="space-img"/>
-            <div class="space-info">
-            <p class="space-name">{{space.name}}</p>
-      
-           <p class="space-price">price {{space.price_per_night}}</p>
-           </div>
-        </div>
-      </a>
-      {% endfor %}
-    </div> -->
 
     <div class="grid-container">
       {% for space in spaces %}
@@ -43,6 +29,7 @@
           <img src= "{{space.url}}" class="space-img"/>
             <div class="space-info">
             <p class="space-name">{{space.name}}</p>
+        
            <p class="space-price">price {{space.price_per_night}}</p>
               {% for booking in space_bookings %}
                 {% if booking['space_id'] == space.id %}
@@ -50,9 +37,16 @@
                   <p>
                     {{booking['username']}}: {{booking['date']}}
                     {% if booking['is_approved'] == False %}
-                      <button>Approve Booking</button>
+                    <form method="POST" action="/approve_booking/{{booking['booking_id']}}">
+                    <button type="submit">Approve</button>
+                    </form>
+                    <form method="POST" action="/decline_booking/{{booking['booking_id']}}">
+                    <button type="submit">Decline</button>
+                    </form>
                     {% else %}
-                      Approved
+                      <form method="POST" action="/decline_booking/{{booking['booking_id']}}">
+                      <button type="submit">Cancel</button>
+                      </form>
                     {%  endif  %}
                   </p>
                 </div>
@@ -60,22 +54,43 @@
               {% endfor %}
            </div>
         </div>
-      </a>
+        </a>
+      
       {% endfor %}
     </div>
 
 
-<ul><span>Hobbit Holes Booked</span>
-        <li>
-                  {% for holiday in holidays_booked %}
-          <div>
-            <p>
-              Space: {{holiday["name"]}}, Date: {{holiday["date"]}} Approved: {{holiday["is_approved"]}}
-            </p>
-          </div>
-        {% endfor %}
-        </li>
-    </ul>
+    <div class="container">
+    <h3>Hobbit Holes Booked</h3>
 
+
+    <div class="grid-container">
+      {% for space in holidays_booked %}
+      <a href="/space/{{space['space_id']}}">
+        <div class="space-card">
+          <img src= "{{space['url']}}" class="space-img"/>
+            <div class="space-info">
+            <p class="space-name">{{space['name']}}</p>
+        
+           <p class="space-price">price {{space['price_per_night']}}</p>
+                <div class ="">
+                  <p>
+                    1 Night {{space['date']}}:
+                    {% if space['is_approved'] == False %}
+                    Awaiting Approval
+                    {% else %}
+                    Approved
+                    {%  endif  %}
+                    <form method="POST" action="/decline_booking/{{space['booking_id']}}">
+                    <button type="submit">Cancel</button>
+                    </form>
+                  </p>
+                </div>
+           </div>
+        </div>
+        </a>
+      
+      {% endfor %}
+    </div>
 </body>
 </html>
