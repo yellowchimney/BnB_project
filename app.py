@@ -98,11 +98,16 @@ def get_user_profile(id):
     conn = get_flask_database_connection(app)
     repository = UserRepository(conn)
     space_repository = SpaceRepository(conn)
+    booking_repository = BookingRepository(conn)
 
     user_data = repository.get_user_by_id(id)
     spaces = space_repository.get_all_owner_spaces(user_data.id)
 
-    return render_template('dashboard.html', user_data = user_data, spaces = spaces)
+    space_bookings = booking_repository.get_all_bookings_by_owner_id(id)
+    holidays_booked = booking_repository.get_bookings_by_user_id(id)
+
+
+    return render_template('dashboard.html', user_data = user_data, spaces = spaces, space_bookings = space_bookings, holidays_booked = holidays_booked)
 
 
 

@@ -21,7 +21,7 @@
     <div class="container">
     <h3>Your Properties</h3>
 
-    <div class="grid-container">
+    <!-- <div class="grid-container">
       {% for space in spaces %}
       <a href="/space/{{space.id}}"> 
         <div class="space-card">
@@ -34,15 +34,47 @@
         </div>
       </a>
       {% endfor %}
+    </div> -->
+
+    <div class="grid-container">
+      {% for space in spaces %}
+      <a href="/space/{{space.id}}">
+        <div class="space-card">
+          <img src= "{{space.url}}" class="space-img"/>
+            <div class="space-info">
+            <p class="space-name">{{space.name}}</p>
+           <p class="space-price">price {{space.price_per_night}}</p>
+              {% for booking in space_bookings %}
+                {% if booking['space_id'] == space.id %}
+                <div class ="">
+                  <p>
+                    {{booking['username']}}: {{booking['date']}}
+                    {% if booking['is_approved'] == False %}
+                      <button>Approve Booking</button>
+                    {% else %}
+                      Approved
+                    {%  endif  %}
+                  </p>
+                </div>
+                {%  endif  %}
+              {% endfor %}
+           </div>
+        </div>
+      </a>
+      {% endfor %}
     </div>
 
 
-    <ul><span>Bookings to approve</span>
-        <!-- loop through each booking to create an li of bookings needing to be approved -->
+<ul><span>Hobbit Holes Booked</span>
         <li>
-
+                  {% for holiday in holidays_booked %}
+          <div>
+            <p>
+              Space: {{holiday["name"]}}, Date: {{holiday["date"]}} Approved: {{holiday["is_approved"]}}
+            </p>
+          </div>
+        {% endfor %}
         </li>
-        
     </ul>
 
 </body>
