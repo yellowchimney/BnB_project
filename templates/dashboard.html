@@ -12,7 +12,7 @@
 
 
      <div class="nav-links">
-      <a href="/sign_in">Logout</a>
+      <a href="/logout">Logout</a>
       <a href="/all_spaces">View Spaces</a>
     </div>
     <img src="{{ url_for('static', filename='shirebnb-removebg-preview.png') }}" alt="ShireBnB Logo" class="logo" />
@@ -57,10 +57,30 @@
                 {%  endif  %}
               {% endfor %}
            </div>
+                <form action="/delete_space" method="POST">
+                  <input type="hidden" name="space_id" value="{{space.id}}">
+               <button name="delete-property" value="delete-property" class="btn-red delete-property">Delete Property</button>
+               </form>
+                  
         </div>
+         
         </a>
-      
+       
+    
       {% endfor %}
+      {% with messages = get_flashed_messages() %}
+                   {% if messages %}
+                   <div class="flashes-cont">
+                   <ul class="flashes">
+                  
+                  {% for message in messages %}
+                 <li>{{ message }}</li>
+                {% endfor %}
+                </ul>
+                </div>
+                {% endif %}
+                  {% endwith %}
+ 
     </div>
 
 
@@ -71,8 +91,9 @@
     <div class="grid-container">
       {% for space in holidays_booked %}
       <a href="/space/{{space['space_id']}}">
-        <div class="space-card">
+        <div class="space-card">  
           <img src= "{{space['url']}}" class="space-img"/>
+          
             <div class="space-info">
             <p class="space-name">{{space['name']}}</p>
         
@@ -96,6 +117,9 @@
         </a>
       
       {% endfor %}
+
+
+   
     </div>
 </body>
 </html>
