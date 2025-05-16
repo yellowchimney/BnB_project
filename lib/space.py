@@ -11,4 +11,4 @@ class Space:
         return self.__dict__ == other.__dict__
 
     def __repr__(self):
-        return f"Space({self.id}, {self.name}, {self.description}, {self.price_per_night}, {self.owner_id})"
+        return f"Space({self.id}, {self.name}, {self.description}, {self.price_per_night}, {self.owner_id}, {self.url})"
