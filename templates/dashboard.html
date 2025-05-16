@@ -13,7 +13,7 @@
 
 
      <div class="nav-links">
-      <a href="/sign_in">Login</a>
+      <a href="/logout">Logout</a>
       <a href="/all_spaces">View Spaces</a>
     </div>
     <img src="{{ url_for('static', filename='shirebnb-removebg-preview.png') }}" alt="ShireBnB Logo" class="logo" />
@@ -22,6 +22,7 @@
 
     <div class="container">
     <h3>Your Properties</h3>
+    <a href="/create_space"><button class="btn">Create Spaces</button></a>
 
 
     <div class="grid-container">
@@ -35,30 +36,52 @@
            <p class="space-price">price {{space.price_per_night}}</p>
               {% for booking in space_bookings %}
                 {% if booking['space_id'] == space.id %}
-                <div class ="">
-                  <p>
-                    {{booking['username']}}: {{booking['date']}}
+                <div class ="booking-request">
+                  <p class="booking-date">
+                    {{booking['username']}}<br>
+                    {{booking['date']}}
+                    </p>
                     {% if booking['is_approved'] == False %}
                     <form method="POST" action="/approve_booking/{{booking['booking_id']}}">
-                    <button type="submit">Approve</button>
+                    <button class="btn" type="submit">Approve</button>
                     </form>
                     <form method="POST" action="/decline_booking/{{booking['booking_id']}}">
-                    <button type="submit">Decline</button>
+                    <button class="btn-red" type="submit">Decline</button>
                     </form>
                     {% else %}
                       <form method="POST" action="/decline_booking/{{booking['booking_id']}}">
-                      <button type="submit">Cancel</button>
+                      <button class="btn-red" type="submit">Cancel</button>
                       </form>
                     {%  endif  %}
-                  </p>
+                  
                 </div>
                 {%  endif  %}
               {% endfor %}
            </div>
+                <form action="/delete_space" method="POST">
+                  <input type="hidden" name="space_id" value="{{space.id}}">
+               <button name="delete-property" value="delete-property" class="btn-red delete-property">Delete Property</button>
+               </form>
+                  
         </div>
+         
         </a>
-      
+       
+    
       {% endfor %}
+      {% with messages = get_flashed_messages() %}
+                   {% if messages %}
+                   <div class="flashes-cont">
+                   <ul class="flashes">
+                  
+                  {% for message in messages %}
+                 <li>{{ message }}</li>
+                {% endfor %}
+                </ul>
+                </div>
+                {% endif %}
+                  {% endwith %}
+ 
     </div>
 
 
@@ -69,30 +92,35 @@
     <div class="grid-container">
       {% for space in holidays_booked %}
       <a href="/space/{{space['space_id']}}">
-        <div class="space-card">
+        <div class="space-card">  
           <img src= "{{space['url']}}" class="space-img"/>
+          
             <div class="space-info">
             <p class="space-name">{{space['name']}}</p>
         
            <p class="space-price">price {{space['price_per_night']}}</p>
-                <div class ="">
-                  <p>
+                <div class ="booking-request">
+                  <p class="booking-date">
                     1 Night {{space['date']}}:
+                  <br>
                     {% if space['is_approved'] == False %}
                     Awaiting Approval
                     {% else %}
                     Approved
                     {%  endif  %}
-                    <form method="POST" action="/decline_booking/{{space['booking_id']}}">
-                    <button type="submit">Cancel</button>
-                    </form>
                   </p>
+                    <form method="POST" action="/decline_booking/{{space['booking_id']}}">
+                    <button class="btn-red" type="submit">Cancel</button>
+                    </form>
                 </div>
            </div>
         </div>
         </a>
       
       {% endfor %}
+
+
+   
     </div>
 </body>
 </html>

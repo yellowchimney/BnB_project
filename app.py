@@ -83,8 +83,7 @@ def create_space():
 def create_space_post():
     conn = get_flask_database_connection(app)
     repository = SpaceRepository(conn)
-    # FLASK_LOGIN.CURRENT_USER.id, PLACEHOLDER FOR NOW 
-    owner_id = 1
+    owner_id = current_user.id
     name = request.form['name']
     description = request.form['description']
     price_per_night = request.form['price_per_night']
@@ -144,6 +143,21 @@ def decline_booking(id):
     booking_repository = BookingRepository(conn)
     booking_repository.decline_booking(id)
     return redirect(f'/dashboard/{current_user.id}')
+
+
+@app.route('/delete_space', methods=['POST'])
+@login_required
+def delete_space():
+    space_id = request.form.get('space_id')
+    conn = get_flask_database_connection(app)
+    space_repository = SpaceRepository(conn)
+    try:
+        space_repository.delete_space(space_id)
+        return redirect(f'/dashboard/{current_user.id}')
+    except:
+        flash('Cannot delete properties with existing booking requests')
+        return redirect(f'/dashboard/{current_user.id}')
+    
 
 
 

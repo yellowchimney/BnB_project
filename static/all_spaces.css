@@ -1,4 +1,8 @@
- .logo {
+body{
+       background-color: #f9f7f3;
+}
+
+.logo {
         position: absolute;
         top: 10px;
         left: 10px;
@@ -79,3 +83,73 @@ h1 {
     text-decoration: none;
     display: inline-block;
 }
+
+.btn:hover {
+      background-color: #228B22;
+    }
+
+.btn-red {
+    padding: 0.5rem 1rem;
+    background-color: #cd0b0b;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    display: inline-block; 
+}
+
+
+.btn-red:hover {
+      background-color:#ef0f0f;
+}
+
+
+.booking-request {
+      display:flex;
+      width:80%;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+      margin: 0 auto;
+      border: 1px solid #ccc;
+      border-radius: 12px;
+      padding: 10px;
+      text-align: center;
+      box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+      background-color: #fdfdfd;
+      align-items: stretch;
+      min-width: 80%;
+      margin-top: 10px;
+      
+}
+
+.booking-date{
+      width:100%;
+      flex-direction: column;
+}
+
+
+.delete-property{
+      margin-top: 20px;
+      width: 35%;
+}
+
+
+.flashes-cont {
+  max-width: 400px;
+  margin: 20px auto;
+  background-color: #fee;
+  border: 1px solid #f99;
+  border-radius: 8px;
+  padding: 15px 20px;
+  box-shadow: 0 0 5px rgba(255,0,0,0.2);
+  text-align: center;
+}
+
+.flashes {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 20px;
+  color: #900;
+}
+      

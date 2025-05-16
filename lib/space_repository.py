@@ -19,8 +19,11 @@ class SpaceRepository:
                                  [space.name, space.description, space.price_per_night, space.owner_id, space.url])       
         return rows[0]["id"]
     
-
     def get_all_owner_spaces(self, owner_id):
         rows = self._connection.execute("SELECT * FROM spaces WHERE owner_id = %s", [owner_id])
         return [Space(row['id'], row['name'], row['description'], row['price_per_night'], row['owner_id'], row['url']) for row in rows]
+    
+
+    def delete_space(self, space_id):
+        self._connection.execute("DELETE FROM spaces WHERE id = %s", [space_id])
 
