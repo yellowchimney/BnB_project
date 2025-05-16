@@ -144,6 +144,21 @@ def decline_booking(id):
     return redirect(f'/dashboard/{current_user.id}')
 
 
+@app.route('/delete_space', methods=['POST'])
+@login_required
+def delete_space():
+    space_id = request.form.get('space_id')
+    conn = get_flask_database_connection(app)
+    space_repository = SpaceRepository(conn)
+    try:
+        space_repository.delete_space(space_id)
+        return redirect(f'/dashboard/{current_user.id}')
+    except:
+        flash('Cannot delete properties with existing booking requests')
+        return redirect(f'/dashboard/{current_user.id}')
+    
+
+
 
 ############################################################################################################
 ############################################################################################################
