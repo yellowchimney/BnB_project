@@ -11,6 +11,8 @@ load_dotenv()
 # If the below seems too complex right now, that's OK.
 # That's why we have provided it!
 class DatabaseConnection:
+    # DEV_DATABASE_NAME = "makersbnb"
+    # TEST_DATABASE_NAME = "makersbnb_test"
 
     def __init__(self, test_mode=False):
         self.test_mode = test_mode
@@ -19,16 +21,20 @@ class DatabaseConnection:
     # to localhost and select the database name given in argument.
     def connect(self):
         try:
+            # self.connection = psycopg.connect(
+            #     f"postgresql://localhost/{self._database_name()}",
+            #     row_factory=dict_row)
             self.connection = psycopg.connect(
                 host=os.getenv("DB_HOST"),
-                database=os.getenv("DB_NAME"),
+                dbname=os.getenv("DB_NAME"),
                 user=os.getenv("DB_USER"),
-                password=os.getenv("DB_PASSWORD")
+                password=os.getenv("DB_PASSWORD"),
+                row_factory=dict_row
             )
 
         except psycopg.OperationalError:
-            raise Exception(f"Couldn't connect to the database {self._database_name()}! " \
-                    f"Did you create it using `createdb {self._database_name()}`?")
+            raise Exception(f"Couldn't connect to the database {os.getenv('DB_NAME')}! " \
+                    f"Did you create it using `createdb {os.getenv('DB_NAME')}`?")
 
     # This method seeds the database with the given SQL file.
     # We use it to set up our database ready for our tests or application.

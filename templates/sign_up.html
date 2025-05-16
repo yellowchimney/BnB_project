@@ -14,7 +14,7 @@
     <img src="{{ url_for('static', filename='shirebnb-removebg-preview.png') }}" alt="ShireBnB Logo" class="logo" />
     <div class="sign-in-container"> 
         <h1>Sign Up</h1>
-        <form action="/sign_up", method="POST">
+        <form action="/sign_up" method="POST">
         <p>
         <input type="text" name="username" id="username"placeholder="Username"required>
         </p>
@@ -32,7 +32,7 @@
         </div>
         </form>
 
-<!-- {% with messages = get_flashed_messages() %}
+{% with messages = get_flashed_messages() %}
   {% if messages %}
     <ul class="flashes">
       {% for message in messages %}
@@ -40,7 +40,7 @@
       {% endfor %}
     </ul>
   {% endif %}
-{% endwith %} -->
+{% endwith %}
 
 </body>
 </html>
