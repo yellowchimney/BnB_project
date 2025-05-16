@@ -3,8 +3,8 @@ from playwright.sync_api import Page, expect
 # Tests for your routes go here
 
 """
-We can render the index page
-"""
+# We can render the index page
+# """
 def test_get_index(page, test_web_address):
     # We load a virtual browser and navigate to the /index page
     page.goto(f"http://{test_web_address}/index")
@@ -31,6 +31,3 @@ def test_create_space_route(page, test_web_address):
     h1_tags = page.locator("h1")
     expect(h1_tags).to_have_text("Bag End")
 
-
-
-    

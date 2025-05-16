@@ -134,7 +134,8 @@ def get_user_profile(id):
 def approve_booking(id):
     conn = get_flask_database_connection(app)
     booking_repository = BookingRepository(conn)
-    booking_repository.approve_booking(id)
+    approved_booking = booking_repository.approve_booking(id)
+    booking_repository.delete_duplicate_bookings(approved_booking.space_id, approved_booking.date)
     return redirect(f'/dashboard/{current_user.id}')
 
 @app.route('/decline_booking/<id>', methods=['POST'])

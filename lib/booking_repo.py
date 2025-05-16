@@ -14,7 +14,13 @@ class BookingRepository:
         return [Booking(row['id'], row['user_id'], row['space_id'], row['date'], row['is_approved']) for row in rows]
 
     def approve_booking(self, booking_id):
-        self._connection.execute('UPDATE bookings SET is_approved = TRUE WHERE id = %s', [booking_id])
+        rows = self._connection.execute('UPDATE bookings SET is_approved = TRUE WHERE id = %s RETURNING id, user_id, space_id, date, is_approved', [booking_id])
+        row = rows[0]
+        return Booking(row['id'], row['user_id'], row['space_id'], row['date'], row['is_approved'])
+
+
+    def delete_duplicate_bookings(self, space_id, date):
+        self._connection.execute('DELETE FROM bookings WHERE is_approved = FALSE AND space_id = %s AND date = %s', [space_id, date])
 
     def decline_booking(self, booking_id):
         self._connection.execute('DELETE FROM bookings WHERE id = %s', [booking_id])
